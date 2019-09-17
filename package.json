@@ -1,0 +1,42 @@
+{
+  "name": "@reason-react-native/webview",
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "sgny (https://github.com/sgny)",
+  "repository": "https://github.com/reason-react-native/webview.git",
+  "license": "MIT",
+  "keywords": [
+    "reason",
+    "reasonml",
+    "bucklescript",
+    "react-native",
+    "react-native-webview",
+    "webview"
+  ],
+  "files": [
+    "*",
+    "!.DS_Store",
+    "!**/*.bs.js",
+    "!.merlin",
+    "!lib/bs",
+    "!lib/ocaml"
+  ],
+  "scripts": {
+    "start": "bsb -make-world -w",
+    "build": "bsb -make-world",
+    "clean": "bsb -clean-world",
+    "test": "bsb -clean-world -make-world"
+  },
+  "devDependencies": {
+    "react-native-webview": "^7.0.0",
+    "bs-platform": "^5.0.4",
+    "reason-react": ">=0.7.0",
+    "reason-react-native": "^0.60.0"
+  },
+  "peerDependencies": {
+    "react-native-webview": "^7.0.0",
+    "reason-react": ">=0.7.0"
+  }
+}
