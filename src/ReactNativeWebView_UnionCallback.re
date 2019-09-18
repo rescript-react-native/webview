@@ -5,7 +5,7 @@ module Make = (T: {
                }) => {
   type t = ReactNative.Event.syntheticEvent(T.union) => unit;
 
-  [@bs.get] external description: 'a => option(string) = "description";
+  [@bs.get] external description: T.union => option(string) = "description";
   external convert: ('a => unit) => t = "%identity";
   let make =
       (

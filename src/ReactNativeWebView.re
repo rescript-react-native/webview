@@ -98,17 +98,6 @@ external nativeConfig:
   nativeConfig =
   "";
 
-type request = {
-  .
-  "url": string,
-  "title": string,
-  "loading": bool,
-  "canGoBack": bool,
-  "canGoForward": bool,
-  "lockIdentifier": string,
-  "navigationType": ReactNativeWebView_NavigationType.t,
-};
-
 [@react.component] [@bs.module "react-native-webview"]
 external make:
   (
@@ -154,7 +143,7 @@ external make:
     ~onMessage: webViewMessageEvent => unit=?,
     ~onLoadProgress: webViewProgressEvent => unit=?,
     ~onNavigationStateChange: Js.t(webViewNavigation) => unit=?,
-    ~onShouldStartLoadWithRequest: request => bool=?,
+    ~onShouldStartLoadWithRequest: Js.t(webViewNavigation) => bool=?,
     ~originWhitelist: array(string)=?,
     ~overScrollMode: [@bs.string] [ | `never | `always | `content]=?,
     ~pagingEnabled: bool=?,
