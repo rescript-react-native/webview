@@ -11,7 +11,9 @@ function Make(T) {
       return Curry._1(navigationCallback, x);
     }
   };
-  return /* module */[/* make */make];
+  return {
+          make: make
+        };
 }
 
 exports.Make = Make;

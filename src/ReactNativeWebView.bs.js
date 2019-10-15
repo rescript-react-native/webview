@@ -3,9 +3,9 @@
 var ReactNativeWebView_Element = require("./ReactNativeWebView_Element.bs.js");
 var ReactNativeWebView_UnionCallback = require("./ReactNativeWebView_UnionCallback.bs.js");
 
-var Source = /* module */[];
+var Source = { };
 
-var UnionCallback = ReactNativeWebView_UnionCallback.Make(/* module */[]);
+var UnionCallback = ReactNativeWebView_UnionCallback.Make({ });
 
 var DataDetectorTypes = 0;
 
