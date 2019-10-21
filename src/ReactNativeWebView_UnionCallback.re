@@ -6,7 +6,8 @@ module Make = (T: {
   type t = ReactNative.Event.syntheticEvent(T.union) => unit;
 
   [@bs.get] external description: T.union => option(string) = "description";
-  external convert: ('a => unit) => t = "%identity";
+  external convert: ReactNative.Event.syntheticEvent(T.union) => 'a =
+    "%identity";
   let make =
       (
         ~navigationCallback: T.navigationEvent => unit,
@@ -15,8 +16,21 @@ module Make = (T: {
       : t => {
     x =>
       switch (description(x##nativeEvent)) {
-      | None => convert(navigationCallback, x)
-      | Some(_) => convert(errorCallback, x)
+      | None => navigationCallback(convert(x))
+      | Some(_) => errorCallback(convert(x))
+      };
+  };
+
+  let uncurriedMake =
+      (
+        ~navigationCallback: (. T.navigationEvent) => unit,
+        ~errorCallback: (. T.errorEvent) => unit,
+      )
+      : t => {
+    x =>
+      switch (description(x##nativeEvent)) {
+      | None => navigationCallback(. convert(x))
+      | Some(_) => errorCallback(. convert(x))
       };
   };
 };

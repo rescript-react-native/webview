@@ -11,8 +11,17 @@ function Make(T) {
       return Curry._1(navigationCallback, x);
     }
   };
+  var uncurriedMake = function (navigationCallback, errorCallback, x) {
+    var match = x.nativeEvent.description;
+    if (match !== undefined) {
+      return errorCallback(x);
+    } else {
+      return navigationCallback(x);
+    }
+  };
   return {
-          make: make
+          make: make,
+          uncurriedMake: uncurriedMake
         };
 }
 
