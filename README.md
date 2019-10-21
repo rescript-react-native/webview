@@ -12,7 +12,7 @@
 
 Exposed as the `ReactNativeWebView` module.
 
-Version x.y.z of `@reason-react-native/webview` is intended to be compatible with version x.y.z of `@react-native-community/react-native-webview`.
+Version x.y.z of `@reason-react-native/webview` is intended to be compatible with version x.y.* of `@react-native-community/react-native-webview`.
 
 ## Installation
 
@@ -35,7 +35,7 @@ yarn add @reason-react-native/webview
   //...
   "bs-dependencies": [
     "reason-react",
-    "@reason-react-native/react-native",
+    "reason-react-native",
     // ...
 +    "@reason-react-native/webview"
   ],
