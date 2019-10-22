@@ -71,9 +71,6 @@ value: float => t
 
 Other valid values are `DecelerationRate.normal` and `DecelerationRate.fast` which are equivalent to specifying `0.998` and `0.99` and match the underlying iOS settings for `UIScrollViewDecelerationRateNormal` and `UIScrollViewDecelerationRateFast` respectively. 
 
-normal: 0.998
-fast: `0.99` (the default for iOS web view)
-
 #### `NavigationType.t`
 
 Valid values are:
@@ -87,7 +84,11 @@ Valid values are:
 
 #### `Source.t`
 
-##### URI
+Source to be loaded in the `WebView`, as specified by the [`source`(#source-source.t) prop can be either a URI or static HTML.
+
+##### `Source.uri`
+
+Creates a URI source
 
 ```reason
 uri:
@@ -117,13 +118,16 @@ uri:
 - `headers` specifies additional HTTP headers to send with the request. This can only be used with `` `GET`` requests on Android.
 - `body` specifies HTTP body to send with the request. This must be a valid UTF-8 string, and will be sent exactly as specified, with no additional encoding (e.g. URL-escaping or base64) applied. This can only be used with `` `POST`` requests on Android.
 
-##### Static HTML
+##### `Source.html`
 
-
+Creates a static HTML source
 
 ```reason
 html: (~html: string=?, ~baseUrl: string=?, unit) => t 
 ```
+
+- `html` specifies static HTML to display in the WebView as `string`.
+- `baseUrl` specifies the base URL to be used for any relative links in the HTML. It is also used for the origin header with CORS requests made from the WebView. Refer to [Android WebView Docs](https://developer.android.com/reference/android/webkit/WebView#loadDataWithBaseURL).
 
 #### `UnionCallback.t`
 
@@ -188,7 +192,7 @@ React `ref` intended to access a `WebView` instance. Defined as
 type ref = React.Ref.t(Js.nullable(element))
 ```
 
-#### `webViewNativeEvent`
+#### `Js.t(webViewNativeEvent)`
 
 Has the below keys, which can be accessed with `##`.
 
@@ -199,7 +203,7 @@ Has the below keys, which can be accessed with `##`.
 * `canGoBack: bool`
 * `canGoForward: bool`
 
-#### `webViewError`
+#### `Js.t(webViewError)`
 
 Has the below keys, which can be accessed with `##`.
 
@@ -216,7 +220,7 @@ Has the below keys, which can be accessed with `##`.
 
 Note: `domain` key only exists on iOS
 
-#### `webViewHttpError`
+#### `Js.t(webViewHttpError)`
 
 Has the below keys, which can be accessed with `##`.
 
@@ -231,7 +235,7 @@ Has the below keys, which can be accessed with `##`.
 
 Note: `description` key only exists on iOS
 
-#### `webViewMessage`
+#### `Js.t(webViewMessage)`
 
 Has the below keys, which can be accessed with `##`.
 
@@ -244,7 +248,7 @@ Has the below keys, which can be accessed with `##`.
 * `data: string`
 
 
-#### `webViewNativeProgressEvent`
+#### `Js.t(webViewNativeProgressEvent)`
 
 Has the below keys, which can be accessed with `##`.
 
@@ -257,7 +261,7 @@ Has the below keys, which can be accessed with `##`.
 * `progress: float`
 
 
-#### `webViewNavigation`
+#### `Js.t(webViewNavigation)`
 
 Has the below keys, which can be accessed with `##`.
 
@@ -271,7 +275,7 @@ Has the below keys, which can be accessed with `##`.
 * `mainDocumentURL: option(string)`
 
 
-#### `webViewShouldStartLoadWithRequest`
+#### `Js.t(webViewShouldStartLoadWithRequest)`
 
 Has the below keys, which can be accessed with `##`.
 
@@ -287,6 +291,9 @@ Has the below keys, which can be accessed with `##`.
 
 
 #### `webViewErrorEvent`
+
+wraps [`Js.t(webViewError)`](#jstwebviewerror) in `ReactNative.Event.syntheticEvent`
+
 ```reason
 type webViewErrorEvent =
   ReactNative.Event.syntheticEvent(Js.t(webViewError));
@@ -295,6 +302,9 @@ type webViewErrorEvent =
 passed to the handler specified for [`onError`](#onerror-webviewerrorevent--unit)
 
 #### `webViewHttpErrorEvent`
+
+wraps [`Js.t(webViewHttpError)`](#jstwebviewhttperror) in `ReactNative.Event.syntheticEvent`
+
 ```reason
 type webViewHttpErrorEvent =
   ReactNative.Event.syntheticEvent(Js.t(webViewHttpError));
@@ -303,6 +313,9 @@ type webViewHttpErrorEvent =
 passed to the handler specified for [`onHttpError`](#onhttperror-webviewhttperrorevent--unit)
 
 #### `webViewMessageEvent`
+
+wraps [`Js.t(webViewMessage)`](#jstwebviewmessage) in `ReactNative.Event.syntheticEvent`
+
 ```reason
 type webViewMessageEvent =
   ReactNative.Event.syntheticEvent(Js.t(webViewMessage));
@@ -311,6 +324,9 @@ type webViewMessageEvent =
 passed to the handler specified for [`onMessage`](#onmessage-webviewmessageevent--unit)
 
 #### `webViewNavigationEvent`
+
+wraps [`Js.t(webViewNavigation)`](#jstwebviewnavigation) in `ReactNative.Event.syntheticEvent`
+
 ```reason
 type webViewNavigationEvent =
   ReactNative.Event.syntheticEvent(Js.t(webViewNavigation));
@@ -319,6 +335,9 @@ type webViewNavigationEvent =
 passed to handlers specified for [`onLoad`](#onload-webviewnavigationevent--unit) or [`onLoadStart`](#onloadstart-webviewnavigationevent--unit)
 
 #### `webViewProgressEvent`
+
+wraps [`Js.t(webViewNativeProgressEvent)`](#jstwebviewnativeprogressevent) in `ReactNative.Event.syntheticEvent`
+
 ```reason
 type webViewProgressEvent =
   ReactNative.Event.syntheticEvent(Js.t(webViewNativeProgressEvent));
@@ -327,6 +346,9 @@ type webViewProgressEvent =
 passed to the handler specified for [`onLoadProgress`](#onloadprogress-webviewprogressevent--unit)
 
 #### `webViewTerminatedEvent`
+
+wraps [`Js.t(webViewNativeEvent)`](#jstwebviewnativeevent) in `ReactNative.Event.syntheticEvent`
+
 ```reason
 type webViewTerminatedEvent =
   ReactNative.Event.syntheticEvent(webViewNativeEvent);
@@ -457,7 +479,7 @@ Specifies types of data to be converted to clickable URLs in content of the WebV
 
 _iOS only_
 
-Specifies how quickly the scroll view should decelerate once the user lifts their finger. Refer to [`DecelerationRate.t`](#decelerationratet) for all valid values.
+Specifies how quickly the scroll view should decelerate once the user lifts their finger, defaults to `DecelerationRate.fast`. Refer to [`DecelerationRate.t`](#decelerationratet) for all valid values.
 
 #### `directionalLockEnabled: bool`
 
@@ -714,7 +736,7 @@ allows to customize the WebView style. Please note that there are default styles
 
 ### Methods
 
-For the methods below, `element` representing the `WebView` instance needs to be determined from the `ref` which itself can be defined and passed to the `WebView` as below:
+For the methods below, [`element`](#element) representing the `WebView` instance needs to be determined from the [`ref`](#ref) which itself can be defined and passed to the `WebView` [`ref`](#ref-ref) prop as below:
 
 ```reason
 let ref = React.createRef();
@@ -747,7 +769,7 @@ Reloads the current page.
 
 Stop loading the current page.
 
-#### `injectJavaScript: (T.t, string) => unit`
+#### `injectJavaScript: (element, string) => unit`
 
 Injects JavaScript as `string` into the web page. The string should evaluate to a valid type (e.g. `true`) and not otherwise throw an exception.
 
