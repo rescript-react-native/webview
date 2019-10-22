@@ -41,7 +41,6 @@ class type webViewNativeEvent = {
   pub loading: bool;
   pub canGoBack: bool;
   pub canGoForward: bool;
-  pub lockIdentifier: int;
 };
 
 class type virtual webViewError = {
@@ -51,6 +50,13 @@ class type virtual webViewError = {
   pub domain: option(string);
   pub code: int;
   pub didFailProvisionalNavigation: option(bool);
+};
+
+class type virtual webViewHttpError = {
+  as 'self;
+  constraint 'self = #webViewNativeEvent;
+  pub description: string;
+  pub statusCode: int;
 };
 
 class type virtual webViewMessage = {
@@ -72,16 +78,28 @@ class type virtual webViewNavigation = {
   pub mainDocumentURL: option(string);
 };
 
+class type virtual webViewShouldStartLoadWithRequest = {
+  as 'self;
+  constraint 'self = #webViewNativeEvent;
+  pub navigationType: ReactNativeWebView_NavigationType.t;
+  pub mainDocumentURL: option(string);
+  pub lockIdentifier: int;
+};
+
 type webViewNavigationOrError;
 
 type webViewErrorEvent =
   ReactNative.Event.syntheticEvent(Js.t(webViewError));
+type webViewHttpErrorEvent =
+  ReactNative.Event.syntheticEvent(Js.t(webViewHttpError));
 type webViewMessageEvent =
   ReactNative.Event.syntheticEvent(Js.t(webViewMessage));
 type webViewNavigationEvent =
   ReactNative.Event.syntheticEvent(Js.t(webViewNavigation));
 type webViewProgressEvent =
   ReactNative.Event.syntheticEvent(Js.t(webViewNativeProgressEvent));
+type webViewTerminatedEvent =
+  ReactNative.Event.syntheticEvent(Js.t(webViewNativeEvent));
 
 module UnionCallback =
   ReactNativeWebView_UnionCallback.Make({
@@ -94,7 +112,11 @@ type nativeConfig;
 
 [@bs.obj]
 external nativeConfig:
-  (~component: React.component('a)=?, ~props: Js.t('b)=?, ~viewManager: Js.t('c)=?) =>
+  (
+    ~component: React.component('a)=?,
+    ~props: Js.t('b)=?,
+    ~viewManager: Js.t('c)=?
+  ) =>
   nativeConfig =
   "";
 
@@ -111,10 +133,18 @@ external make:
     ~allowsInlineMediaPlayback: bool=?,
     ~allowsLinkPreview: bool=?,
     ~androidHardwareAccelerationDisabled: bool=?,
-    ~applicationNameForUserAgent: bool=?,
+    ~applicationNameForUserAgent: string=?,
     ~automaticallyAdjustContentInsets: bool=?,
     ~bounces: bool=?,
     ~cacheEnabled: bool=?,
+    ~cacheMode: [@bs.string] [
+                  | [@bs.as "LOAD_DEFAULT"] `default
+                  | [@bs.as "LOAD_CACHE_ONLY"] `cacheOnly
+                  | [@bs.as "LOAD_CACHE_ELSE_NETWORK"] `cacheElseNetwork
+                  | [@bs.as "LOAD_NO_CACHE"] `noCache
+                ]
+                  =?,
+    ~containerStyle: ReactNative.Style.t=?,
     ~contentInset: ReactNative.View.edgeInsets=?,
     ~contentInsetAdjustmentBehavior: [@bs.string] [
                                        | `never
@@ -136,14 +166,18 @@ external make:
     ~mediaPlaybackRequiresUserAction: bool=?,
     ~mixedContentMode: [@bs.string] [ | `never | `always | `compatibility]=?,
     ~nativeConfig: nativeConfig=?,
+    ~onContentProcessDidTerminate: webViewTerminatedEvent => unit=?,
     ~onError: webViewErrorEvent => unit=?,
+    ~onHttpError: webViewHttpErrorEvent => unit=?,
     ~onLoad: webViewNavigationEvent => unit=?,
     ~onLoadEnd: UnionCallback.t=?,
+    ~onLoadProgress: webViewProgressEvent => unit=?,
     ~onLoadStart: webViewNavigationEvent => unit=?,
     ~onMessage: webViewMessageEvent => unit=?,
-    ~onLoadProgress: webViewProgressEvent => unit=?,
     ~onNavigationStateChange: Js.t(webViewNavigation) => unit=?,
-    ~onShouldStartLoadWithRequest: Js.t(webViewNavigation) => bool=?,
+    ~onShouldStartLoadWithRequest: Js.t(webViewShouldStartLoadWithRequest) =>
+                                   bool
+                                     =?,
     ~originWhitelist: array(string)=?,
     ~overScrollMode: [@bs.string] [ | `never | `always | `content]=?,
     ~pagingEnabled: bool=?,
