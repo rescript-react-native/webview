@@ -511,7 +511,9 @@ Does not store any data within the lifetime of the `WebView.`
 
 #### `injectedJavaScript: string`
 
-Specifies JavaScript that will be injected into the web page when loaded. The string should evaluate to a valid type (e.g. `true`) and not otherwise throw an exception.
+Specifies JavaScript that will be injected into the web page when loaded. The string should evaluate to a valid type (e.g. `true`) and not otherwise throw an exception. 
+
+Example below passes`window.location` as a JSON object to be handled by the function passed to `onMessage`
 
 ```reason
 let injectedJavaScript = "(function() {
@@ -528,6 +530,45 @@ let injectedJavaScript = "(function() {
 Note that the JavaScript will only be run once when the page is loaded for the first time; it will not be run again even if the page is reloaded or navigated away.
 
 Refer to the [Communicating between JS and Native](https://github.com/react-native-community/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native) guide for more information.
+
+On iOS, also refer to documentation on [WKUserScriptInjectionTimeAtDocumentEnd](https://developer.apple.com/documentation/webkit/wkuserscriptinjectiontime/wkuserscriptinjectiontimeatdocumentend?language=objc).
+
+#### `injectedJavaScriptForMainFrameOnly: bool`
+
+_iOS only_
+Script specified with `injectedJavaScript` will be loaded for all frames (main frame and iframes) when `false`, defaults to `true` (only for the main frame).
+
+#### `injectedJavaScriptBeforeContentLoaded: string`
+
+_iOS only_
+Specifies JavaScript that will be injected into the web page after the document element is created, but before any other content is loaded. The string should evaluate to a valid type (e.g. `true`) and not otherwise throw an exception.
+
+
+Example below passes`window.location` as a JSON object to be handled by the function passed to `onMessage`
+
+```reason
+let injectedJavaScript = "(function() {
+  window.ReactNativeWebView.postMessage(JSON.stringify(window.location));
+})();";
+
+<ReactNativeWebView
+  source=ReactNativeWebView.Source.uri(~uri="https://facebook.github.io/react-native", ())
+  injectedJavaScriptBeforeContentLoaded=injectedJavaScript
+  onMessage={e => Js.Console.warn(e##nativeEvent##data)}
+/>
+```
+
+Refer to the [Communicating between JS and Native](https://github.com/react-native-community/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native) guide for more information.
+
+Also refer to documentation on [WKUserScriptInjectionTimeAtDocumentStart](https://developer.apple.com/documentation/webkit/wkuserscriptinjectiontime/wkuserscriptinjectiontimeatdocumentstart?language=objc).
+
+#### `injectedJavaScriptBeforeContentLoadedForMainFrameOnly: bool`
+
+_iOS only_
+Script specified with `injectedJavaScriptBeforeContentLoaded` will be loaded for all frames (main frame and iframes) when `false`, defaults to `true` (only for the main frame).
+
+Note that it may not be possible to inject JS into iframes in this stage of the page lifecycle, therefore exercise caution when setting to `false`. 
+
 
 #### `javaScriptEnabled: bool`
 
@@ -752,6 +793,24 @@ switch (ref -> React.Ref.current -> Js.Nullable.toOption) {
 | Some(e) => ReactNativeWebView.reload(e)
 };
 ```
+
+#### `clearFormData: element => unit`
+
+_Android only_
+Removes the autocomplete popup (if present) from the currently focused form field.
+
+#### `clearCache: element => unit`
+
+_Android only_
+Clears the resource cache for all WebViews in the application.
+
+#### `clearHistory: element => unit`
+
+_Android only_
+Clears WebView's internal back/forward list 
+
+#### `requestFocus: element => unit`
+Request focus for the WebView.
 
 #### `goBack: element => unit`
 

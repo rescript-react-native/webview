@@ -1,5 +1,11 @@
 # Changelog of `@reason-react-native/webview`
 
+## 9.0.0 - 2020-03-19
+
+- `clearCache`, `clearFormData`, `clearHistory`, `requestFocus` methods added
+- `injectedJavaScriptForMainFrameOnly`, `injectedJavaScriptBeforeContentLoaded`,
+  `injectedJavaScriptBeforeContentLoadedForMainFrameOnly` props added
+
 ## 7.4.0 - 2019-10-06
 
 Initial release.

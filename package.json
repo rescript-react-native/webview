@@ -1,12 +1,12 @@
 {
   "name": "@reason-react-native/webview",
-  "version": "7.4.0",
+  "version": "9.0.0",
   "publishConfig": {
     "access": "public"
   },
   "author": "sgny (https://github.com/sgny)",
   "peerDependencies": {
-    "react-native-webview": "~7.4.0"
+    "react-native-webview": "~9.0.0"
   },
   "repository": "https://github.com/reason-react-native/webview.git",
   "license": "MIT",
