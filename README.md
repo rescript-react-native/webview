@@ -1,18 +1,16 @@
----
-
 # `@reason-react-native/webview`
 
 [![Build Status](https://github.com/reason-react-native/webview/workflows/Build/badge.svg)](https://github.com/reason-react-native/webview/actions)
 [![Version](https://img.shields.io/npm/v/@reason-react-native/webview.svg)](https://www.npmjs.com/@reason-react-native/webview)
 [![Chat](https://img.shields.io/discord/235176658175262720.svg?logo=discord&colorb=blue)](https://reasonml-community.github.io/reason-react-native/discord/)
 
-[ReasonML](https://reasonml.github.io) /
-[BuckleScript](https://bucklescript.github.io) bindings for
+[ReScript](https://rescript-lang.org) / [Reason](https://reasonml.github.io) bindings for
 [`react-native-webview`](https://github.com/react-native-community/react-native-webview).
 
 Exposed as the `ReactNativeWebView` module.
 
-Version x.y.z of `@reason-react-native/webview` is intended to be compatible with version x.y.* of `@react-native-community/react-native-webview`.
+Version x.y.z of `@reason-react-native/webview` is intended to be compatible
+with version x.y.\* of `@react-native-community/react-native-webview`.
 
 ## Installation
 
@@ -69,7 +67,7 @@ Values may be created using `DecelerationRate.value`
 value: float => t
 ```
 
-Other valid values are `DecelerationRate.normal` and `DecelerationRate.fast` which are equivalent to specifying `0.998` and `0.99` and match the underlying iOS settings for `UIScrollViewDecelerationRateNormal` and `UIScrollViewDecelerationRateFast` respectively. 
+Other valid values are `DecelerationRate.normal` and `DecelerationRate.fast` which are equivalent to specifying `0.998` and `0.99` and match the underlying iOS settings for `UIScrollViewDecelerationRateNormal` and `UIScrollViewDecelerationRateFast` respectively.
 
 #### `NavigationType.t`
 
@@ -114,16 +112,16 @@ uri:
 ```
 
 - `uri` specifies the URI (local or remote) to load in the WebView.
-- `method` specifies HTTP Method to use, defaults to `` `GET``. Only `` `GET`` and `` `POST`` are supported on Android.
-- `headers` specifies additional HTTP headers to send with the request. This can only be used with `` `GET`` requests on Android.
-- `body` specifies HTTP body to send with the request. This must be a valid UTF-8 string, and will be sent exactly as specified, with no additional encoding (e.g. URL-escaping or base64) applied. This can only be used with `` `POST`` requests on Android.
+- `method` specifies HTTP Method to use, defaults to `` `GET ``. Only `` `GET `` and `` `POST `` are supported on Android.
+- `headers` specifies additional HTTP headers to send with the request. This can only be used with `` `GET `` requests on Android.
+- `body` specifies HTTP body to send with the request. This must be a valid UTF-8 string, and will be sent exactly as specified, with no additional encoding (e.g. URL-escaping or base64) applied. This can only be used with `` `POST `` requests on Android.
 
 ##### `Source.html`
 
 Creates a static HTML source
 
 ```reason
-html: (~html: string=?, ~baseUrl: string=?, unit) => t 
+html: (~html: string=?, ~baseUrl: string=?, unit) => t
 ```
 
 - `html` specifies static HTML to display in the WebView as `string`.
@@ -163,7 +161,6 @@ uncurriedMake:
   t;
 ```
 
-
 #### `element`
 
 Represents a `WebView` instance, to be used with [methods](#methods).
@@ -196,27 +193,27 @@ type ref = React.Ref.t(Js.nullable(element))
 
 Has the below keys, which can be accessed with `##`.
 
-* `target: ReactNative.NativeTypes.nodeHandle`
-* `url: string`
-* `title: string`
-* `loading: bool`
-* `canGoBack: bool`
-* `canGoForward: bool`
+- `target: ReactNative.NativeTypes.nodeHandle`
+- `url: string`
+- `title: string`
+- `loading: bool`
+- `canGoBack: bool`
+- `canGoForward: bool`
 
 #### `Js.t(webViewError)`
 
 Has the below keys, which can be accessed with `##`.
 
-* `target: ReactNative.NativeTypes.nodeHandle`
-* `url: string`
-* `title: string`
-* `loading: bool`
-* `canGoBack: bool`
-* `canGoForward: bool`
-* `description: string`
-* `domain: option(string)`
-* `code: int`
-* `didFailProvisionalNavigation: option(bool)`
+- `target: ReactNative.NativeTypes.nodeHandle`
+- `url: string`
+- `title: string`
+- `loading: bool`
+- `canGoBack: bool`
+- `canGoForward: bool`
+- `description: string`
+- `domain: option(string)`
+- `code: int`
+- `didFailProvisionalNavigation: option(bool)`
 
 Note: `domain` key only exists on iOS
 
@@ -224,14 +221,14 @@ Note: `domain` key only exists on iOS
 
 Has the below keys, which can be accessed with `##`.
 
-* `target: ReactNative.NativeTypes.nodeHandle`
-* `url: string`
-* `title: string`
-* `loading: bool`
-* `canGoBack: bool`
-* `canGoForward: bool`
-* `description: string`
-* `statusCode: int`
+- `target: ReactNative.NativeTypes.nodeHandle`
+- `url: string`
+- `title: string`
+- `loading: bool`
+- `canGoBack: bool`
+- `canGoForward: bool`
+- `description: string`
+- `statusCode: int`
 
 Note: `description` key only exists on iOS
 
@@ -239,56 +236,52 @@ Note: `description` key only exists on iOS
 
 Has the below keys, which can be accessed with `##`.
 
-* `target: ReactNative.NativeTypes.nodeHandle`
-* `url: string`
-* `title: string`
-* `loading: bool`
-* `canGoBack: bool`
-* `canGoForward: bool`
-* `data: string`
-
+- `target: ReactNative.NativeTypes.nodeHandle`
+- `url: string`
+- `title: string`
+- `loading: bool`
+- `canGoBack: bool`
+- `canGoForward: bool`
+- `data: string`
 
 #### `Js.t(webViewNativeProgressEvent)`
 
 Has the below keys, which can be accessed with `##`.
 
-* `target: ReactNative.NativeTypes.nodeHandle`
-* `url: string`
-* `title: string`
-* `loading: bool`
-* `canGoBack: bool`
-* `canGoForward: bool`
-* `progress: float`
-
+- `target: ReactNative.NativeTypes.nodeHandle`
+- `url: string`
+- `title: string`
+- `loading: bool`
+- `canGoBack: bool`
+- `canGoForward: bool`
+- `progress: float`
 
 #### `Js.t(webViewNavigation)`
 
 Has the below keys, which can be accessed with `##`.
 
-* `target: ReactNative.NativeTypes.nodeHandle`
-* `url: string`
-* `title: string`
-* `loading: bool`
-* `canGoBack: bool`
-* `canGoForward: bool`
-* `navigationType: ReactNativeWebView_NavigationType.t`
-* `mainDocumentURL: option(string)`
-
+- `target: ReactNative.NativeTypes.nodeHandle`
+- `url: string`
+- `title: string`
+- `loading: bool`
+- `canGoBack: bool`
+- `canGoForward: bool`
+- `navigationType: ReactNativeWebView_NavigationType.t`
+- `mainDocumentURL: option(string)`
 
 #### `Js.t(webViewShouldStartLoadWithRequest)`
 
 Has the below keys, which can be accessed with `##`.
 
-* `target: ReactNative.NativeTypes.nodeHandle`
-* `url: string`
-* `title: string`
-* `loading: bool`
-* `canGoBack: bool`
-* `canGoForward: bool`
-* `navigationType: ReactNativeWebView_NavigationType.t`
-* `mainDocumentURL: option(string)`
-* `lockIdentifier: int`
-
+- `target: ReactNative.NativeTypes.nodeHandle`
+- `url: string`
+- `title: string`
+- `loading: bool`
+- `canGoBack: bool`
+- `canGoForward: bool`
+- `navigationType: ReactNativeWebView_NavigationType.t`
+- `mainDocumentURL: option(string)`
+- `lockIdentifier: int`
 
 #### `webViewErrorEvent`
 
@@ -356,7 +349,6 @@ type webViewTerminatedEvent =
 
 passed to the handler specified for [`onContentProcessDidTerminate`](#oncontentprocessdidterminate-webviewterminatedevent--unit)
 
-
 #### `webViewNavigationOrError`
 
 Union type passed to the handler specified for [`onLoadEnd`](#onloadend-unioncallbackt), is of type [`webViewNavigationEvent`](#webviewnavigationevent) if loading succeeds and [`webViewErrorEvent`](#webviewerrorevent) if it fails.
@@ -365,7 +357,7 @@ Refer to [`UnionCallback.t`](#unioncallbackt) for information on how to create t
 
 ### Props
 
-### `ref: ref` 
+### `ref: ref`
 
 Should be specified to be able to access the `WebView` instance and apply [`methods`](#methods). Also refer to [`element`](#element) and [`ref`](#ref).
 
@@ -425,11 +417,13 @@ For example when `applicationNameForUserAgent="DemoApp/1.1.0"` as below:
 Resulting `User-Agent` may be as below:
 
 ##### Android
+
 ```
 Mozilla/5.0 (Linux; Android 8.1.0; Android SDK built for x86 Build/OSM1.180201.021; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/61.0.3163.98 Mobile Safari/537.36 DemoApp/1.1.0
 ```
 
 ##### iOS
+
 ```
 Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 DemoApp/1.1.0
 ```
@@ -446,16 +440,16 @@ WebView bounces as edge of the content is reached when `true`, defaults to `true
 
 Sets whether WebView should use browser caching, defaults to `true`.
 
-#### ``cacheEnabled: [ | `default | `cacheOnly | `cacheElseNetwork  | `noCache ]``
+#### `` cacheEnabled: [ | `default | `cacheOnly | `cacheElseNetwork | `noCache ] ``
 
 Overrides default caching behavior, which depends on the navigation type. For a normal page load, cache is checked and content is revalidated as needed. When navigating back, content is not revalidated, but simply retrieved from the cache.
 
-| Value  | Behavior  |
-|:--|:--|
-| `` `default`` | Default cache usage mode. If the navigation type doesn't impose any specific behavior, use cached resources when they are available and not expired, otherwise load resources from the network. |
-| `` `cacheOnly`` | Don't use the network, load resources from the cache. |
-| `` `cacheElseNetwork`` | Use cached resources when available, even when expired. Otherwise, load resources from the network. |
-| `` `noCache`` | Don't use the cache, load resources from the network. |
+| Value                   | Behavior                                                                                                                                                                                        |
+| :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `` `default ``          | Default cache usage mode. If the navigation type doesn't impose any specific behavior, use cached resources when they are available and not expired, otherwise load resources from the network. |
+| `` `cacheOnly ``        | Don't use the network, load resources from the cache.                                                                                                                                           |
+| `` `cacheElseNetwork `` | Use cached resources when available, even when expired. Otherwise, load resources from the network.                                                                                             |
+| `` `noCache ``          | Don't use the cache, load resources from the network.                                                                                                                                           |
 
 #### `containerStyle: ReactNative.Style.t`
 
@@ -463,13 +457,13 @@ allows to customize the WebView container style. Please note that there are defa
 
 #### `contentInset: ReactNative.View.edgeInsets`
 
-Refer to [`reason-react-native` documentation on View](https://github.com/reason-react-native/reason-react-native/blob/master/src/components/View.md). 
+Refer to [`reason-react-native` documentation on View](https://github.com/reason-react-native/reason-react-native/blob/master/src/components/View.md).
 
-#### ``contentInsetAdjustmentBehavior: [ | `never | `always | `automatic | `scrollableAxes]``
+#### `` contentInsetAdjustmentBehavior: [ | `never | `always | `automatic | `scrollableAxes] ``
 
 _iOS only_
 
-Specifies how safe area insets are used to modify content area of the scroll view, defaults to `` `never``. Available on iOS 11 and later.
+Specifies how safe area insets are used to modify content area of the scroll view, defaults to `` `never ``. Available on iOS 11 and later.
 
 #### `dataDetectorTypes: array(DataDetectorTypes.t)`
 
@@ -511,7 +505,7 @@ Does not store any data within the lifetime of the `WebView.`
 
 #### `injectedJavaScript: string`
 
-Specifies JavaScript that will be injected into the web page when loaded. The string should evaluate to a valid type (e.g. `true`) and not otherwise throw an exception. 
+Specifies JavaScript that will be injected into the web page when loaded. The string should evaluate to a valid type (e.g. `true`) and not otherwise throw an exception.
 
 Example below passes`window.location` as a JSON object to be handled by the function passed to `onMessage`
 
@@ -543,7 +537,6 @@ Script specified with `injectedJavaScript` will be loaded for all frames (main f
 _iOS only_
 Specifies JavaScript that will be injected into the web page after the document element is created, but before any other content is loaded. The string should evaluate to a valid type (e.g. `true`) and not otherwise throw an exception.
 
-
 Example below passes`window.location` as a JSON object to be handled by the function passed to `onMessage`
 
 ```reason
@@ -567,8 +560,7 @@ Also refer to documentation on [WKUserScriptInjectionTimeAtDocumentStart](https:
 _iOS only_
 Script specified with `injectedJavaScriptBeforeContentLoaded` will be loaded for all frames (main frame and iframes) when `false`, defaults to `true` (only for the main frame).
 
-Note that it may not be possible to inject JS into iframes in this stage of the page lifecycle, therefore exercise caution when setting to `false`. 
-
+Note that it may not be possible to inject JS into iframes in this stage of the page lifecycle, therefore exercise caution when setting to `false`.
 
 #### `javaScriptEnabled: bool`
 
@@ -588,17 +580,17 @@ HTML5 audio and video playback requires the user to tap them when `true`, defaul
 
 Some videos may hang while loading on iOS when `true`. As the props defaults to `true`, setting `mediaPlaybackRequiresUserAction=false` may fix this issue.
 
-#### ``mixedContentMode: [@bs.string] [ | `never | `always | `compatibility]``
+#### `` mixedContentMode: [@bs.string] [ | `never | `always | `compatibility] ``
 
 _Android only_
 
-Specifies mixed content mode, defaults to `` `never``.
+Specifies mixed content mode, defaults to `` `never ``.
 
-| Value  | Behavior  |
-|:--|:--|
-| `` `never`` | WebView will not allow a secure origin to load content from an insecure origin. |
-| `` `always`` | WebView will allow a secure origin to load content from any other (even insecure) origin. |
-| `` `compatibility`` | WebView will attempt to be compatible with how modern web browsers treat mixed content. |
+| Value                | Behavior                                                                                  |
+| :------------------- | :---------------------------------------------------------------------------------------- |
+| `` `never ``         | WebView will not allow a secure origin to load content from an insecure origin.           |
+| `` `always ``        | WebView will allow a secure origin to load content from any other (even insecure) origin. |
+| `` `compatibility `` | WebView will attempt to be compatible with how modern web browsers treat mixed content.   |
 
 #### `nativeConfig: nativeConfig`
 
@@ -615,7 +607,7 @@ Specifies function to be invoked when the WebView content process is terminated.
 ```reason
 <ReactNativeWebView
   source=ReactNativeWebView.Source.uri(~uri="https://facebook.github.io/react-native", ())
-  onContentProcessDidTerminate={_ => 
+  onContentProcessDidTerminate={_ =>
     ReactNativeWebView.reload()
 
     this.refs.webview.reload();
@@ -667,18 +659,17 @@ On Android, the function is not called on first load.
 
 Specifies `array(string)` listing origin strings to which navigation is allowed. Strings will be matched against just the origin (not the full URL) and wildcards are allowed. Any URL not whitelisted will be handled by the OS. Defaults to `[|"http://", "https://"|]`.
 
-#### ``overScrollMode: [ | `never | `always | `content]``
+#### `` overScrollMode: [ | `never | `always | `content] ``
 
 _Android only_
 
-Specifies the over scroll mode, defaults to `` `always``.
+Specifies the over scroll mode, defaults to `` `always ``.
 
-| Value  | Behavior  |
-|:--|:--|
-| `` `always`` | Always allow a user to over-scroll the view if scrollable |
-| `` `never`` | Never allow a user to over-scroll the view |
-| `` `content`` | Allow a user to over-scroll the view only if scrollable and the content is large enough |
-
+| Value          | Behavior                                                                                |
+| :------------- | :-------------------------------------------------------------------------------------- |
+| `` `always ``  | Always allow a user to over-scroll the view if scrollable                               |
+| `` `never ``   | Never allow a user to over-scroll the view                                              |
+| `` `content `` | Allow a user to over-scroll the view only if scrollable and the content is large enough |
 
 #### `pagingEnabled: bool`
 
@@ -699,7 +690,7 @@ Specifies a function to be invoked when there is an error.
 
 #### `renderLoading: unit => React.element`
 
-Specifies a function to be invoked when the `WebView` is loading.  Requires setting `startInLoadingState=true` .
+Specifies a function to be invoked when the `WebView` is loading. Requires setting `startInLoadingState=true` .
 
 ```reason
 <ReactNativeWebView
@@ -787,6 +778,7 @@ let ref = React.createRef();
 ```
 
 The `element` can be determined and the method [`reload`](#reload-element--unit) may be called as below:
+
 ```reason
 switch (ref -> React.Ref.current -> Js.Nullable.toOption) {
 | None => Js.Console.warn("no element")
@@ -807,9 +799,10 @@ Clears the resource cache for all WebViews in the application.
 #### `clearHistory: element => unit`
 
 _Android only_
-Clears WebView's internal back/forward list 
+Clears WebView's internal back/forward list
 
 #### `requestFocus: element => unit`
+
 Request focus for the WebView.
 
 #### `goBack: element => unit`
