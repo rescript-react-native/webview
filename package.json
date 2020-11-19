@@ -5,10 +5,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "author": "sgny (https://github.com/sgny)",
   "peerDependencies": {
-    "react-native-webview": "~9.0.0"
+    "react-native-webview": "^9.2.0"
   },
+  "author": "sgny (https://github.com/sgny)",
   "repository": "https://github.com/reason-react-native/webview.git",
   "license": "MIT",
   "keywords": [

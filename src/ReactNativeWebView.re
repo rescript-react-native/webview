@@ -217,6 +217,7 @@ external make:
     ~source: Source.t=?,
     ~startInLoadingState: bool=?,
     ~textZoom: float=?,
+    ~ignoreSilentHardwareSwitch: bool=?,
     ~thirdPartyCookiesEnabled: bool=?,
     ~userAgent: string=?,
     // View props 0.63.0

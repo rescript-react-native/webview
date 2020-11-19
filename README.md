@@ -746,6 +746,12 @@ _Android only_
 
 Resolves issue where custom font sizes on Android leads to undesirable scaling of the interface when set to `100.0` (i.e. `textZoom=100.0`).
 
+#### `ignoreSilentHardwareSwitch: bool`
+
+_iOS only_
+
+When set to true the hardware silent switch is ignored. Default: `false`
+
 #### `thirdPartyCookiesEnabled: bool`
 
 Enables third party cookies in WebView when `true`, defaults to `true` on iOS and Android versions below 5.0.
