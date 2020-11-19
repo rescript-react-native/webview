@@ -5,17 +5,17 @@
 [![Chat](https://img.shields.io/discord/235176658175262720.svg?logo=discord&colorb=blue)](https://reasonml-community.github.io/reason-react-native/discord/)
 
 [ReScript](https://rescript-lang.org) / [Reason](https://reasonml.github.io) bindings for
-[`react-native-webview`](https://github.com/react-native-community/react-native-webview).
+[`react-native-webview`](https://github.com/react-native-webview/react-native-webview).
 
 Exposed as the `ReactNativeWebView` module.
 
-Version x.y.z of `@reason-react-native/webview` is intended to be compatible
-with version x.y.\* of `@react-native-community/react-native-webview`.
+`@reason-react-native/webview` X.y.\* means it's compatible with
+`@react-native-community/react-native-webview` X.y.\*
 
 ## Installation
 
 When
-[`react-native-webview`](`https://github.com/react-native-community/react-native-webview`)
+[`react-native-webview`](https://github.com/react-native-webview/react-native-webview)
 is properly installed & configured by following their installation instructions,
 you can install the bindings:
 
@@ -179,7 +179,7 @@ nativeConfig:
   nativeConfig
 ```
 
-You may refer to [iOS-](https://github.com/react-native-community/react-native-webview/blob/master/docs/Custom-iOS.md) and [Android-](https://github.com/react-native-community/react-native-webview/blob/master/docs/Custom-Android.md)specific guides on how to create a custom `WebView`.
+You may refer to [iOS↗](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Custom-iOS.md) and [Android↗](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Custom-Android.md) specific guides on how to create a custom `WebView`.
 
 #### `ref`
 
@@ -523,7 +523,7 @@ let injectedJavaScript = "(function() {
 
 Note that the JavaScript will only be run once when the page is loaded for the first time; it will not be run again even if the page is reloaded or navigated away.
 
-Refer to the [Communicating between JS and Native](https://github.com/react-native-community/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native) guide for more information.
+Refer to the [Communicating between JS and Native](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native) guide for more information.
 
 On iOS, also refer to documentation on [WKUserScriptInjectionTimeAtDocumentEnd](https://developer.apple.com/documentation/webkit/wkuserscriptinjectiontime/wkuserscriptinjectiontimeatdocumentend?language=objc).
 
@@ -551,7 +551,7 @@ let injectedJavaScript = "(function() {
 />
 ```
 
-Refer to the [Communicating between JS and Native](https://github.com/react-native-community/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native) guide for more information.
+Refer to the [Communicating between JS and Native](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native) guide for more information.
 
 Also refer to documentation on [WKUserScriptInjectionTimeAtDocumentStart](https://developer.apple.com/documentation/webkit/wkuserscriptinjectiontime/wkuserscriptinjectiontimeatdocumentstart?language=objc).
 
@@ -596,13 +596,13 @@ Specifies mixed content mode, defaults to `` `never ``.
 
 Overrides the native component used to render the `WebView`. Enables a custom native `WebView` which uses the same JavaScript as the original WebView. Refer to the [`nativeConfig`](#nativeconfig) type on how to specify the custom component.
 
-You may refer to [iOS-](https://github.com/react-native-community/react-native-webview/blob/master/docs/Custom-iOS.md) and [Android-](https://github.com/react-native-community/react-native-webview/blob/master/docs/Custom-Android.md)specific guides on how to create a custom `WebView`.
+You may refer to [iOS-](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Custom-iOS.md) and [Android-](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Custom-Android.md)specific guides on how to create a custom `WebView`.
 
 #### `onContentProcessDidTerminate: webViewTerminatedEvent => unit`
 
 _iOS only_
 
-Specifies function to be invoked when the WebView content process is terminated. The process may be terminated due to reasons such as running too long or using too many resources, however, once terminated a blank page is displayed and the `WebView` becomes unusable. Please refer to the [PR](https://github.com/react-native-community/react-native-webview/pull/774) which added the functionality to allow handling this issue.
+Specifies function to be invoked when the WebView content process is terminated. The process may be terminated due to reasons such as running too long or using too many resources, however, once terminated a blank page is displayed and the `WebView` becomes unusable. Please refer to the [PR](https://github.com/react-native-webview/react-native-webview/pull/774) which added the functionality to allow handling this issue.
 
 ```reason
 <ReactNativeWebView
@@ -641,13 +641,13 @@ Specifies function to be invoked when the `WebView` calls `window.ReactNativeWeb
 
 `window.ReactNativeWebView.postMessage` accepts one `string` argument, which will be available as e.g. `e##nativeEvent##data` where `e` is the event object.
 
-Refer to the [Communicating between JS and Native](https://github.com/react-native-community/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native) guide for more information.
+Refer to the [Communicating between JS and Native](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native) guide for more information.
 
 #### `onNavigationStateChange: Js.t(webViewNavigation) => unit`
 
 Specifies function to be invoked when the WebView starts or ends loading.
 
-Note that this method will not be invoked on hash URL changes (e.g. from https://example.com/users#list to https://example.com/users#help). A workaround may be found in the [Guide](https://github.com/react-native-community/react-native-webview/blob/master/docs/Guide.md#intercepting-hash-url-changes).
+Note that this method will not be invoked on hash URL changes (e.g. from https://example.com/users#list to https://example.com/users#help). A workaround may be found in the [Guide](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Guide.md#intercepting-hash-url-changes).
 
 #### `onShouldStartLoadWithRequest: Js.t(webViewShouldStartLoadWithRequest) => bool`
 
@@ -825,7 +825,7 @@ Stop loading the current page.
 
 Injects JavaScript as `string` into the web page. The string should evaluate to a valid type (e.g. `true`) and not otherwise throw an exception.
 
-Refer to the [Communicating between JS and Native](https://github.com/react-native-community/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native) guide for more information.
+Refer to the [Communicating between JS and Native](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native) guide for more information.
 
 ---
 
