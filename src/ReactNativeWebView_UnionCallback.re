@@ -1,13 +1,23 @@
+open ReactNative;
+include NativeElement;
+
 module Make = (T: {
                  type union;
                  type navigationEvent;
                  type errorEvent;
                }) => {
-  type t = ReactNative.Event.syntheticEvent(T.union) => unit;
+  module WebViewEvent = {
+    type payload = T.union;
+
+    include Event.SyntheticEvent({
+      type _payload = payload;
+    });
+  };
+
+  type t = WebViewEvent.t => unit;
 
   [@bs.get] external description: T.union => option(string) = "description";
-  external convert: ReactNative.Event.syntheticEvent(T.union) => 'a =
-    "%identity";
+  external convert: WebViewEvent.t => 'a = "%identity";
   let make =
       (
         ~navigationCallback: T.navigationEvent => unit,
@@ -15,7 +25,7 @@ module Make = (T: {
       )
       : t => {
     x =>
-      switch (description(x##nativeEvent)) {
+      switch (description(x.nativeEvent)) {
       | None => navigationCallback(convert(x))
       | Some(_) => errorCallback(convert(x))
       };
@@ -28,7 +38,7 @@ module Make = (T: {
       )
       : t => {
     x =>
-      switch (description(x##nativeEvent)) {
+      switch (description(x.nativeEvent)) {
       | None => navigationCallback(. convert(x))
       | Some(_) => errorCallback(. convert(x))
       };

@@ -1,4 +1,5 @@
-include ReactNativeWebView_Element;
+open ReactNative;
+include NativeElement;
 
 module Source = {
   type t;
@@ -7,7 +8,7 @@ module Source = {
   external uri:
     (
       ~uri: string=?,
-      ~method: [@bs.string] [
+      ~method: [
                  | `CONNECT
                  | `DELETE
                  | `GET
@@ -23,11 +24,9 @@ module Source = {
       ~body: string=?,
       unit
     ) =>
-    t =
-    "";
+    t;
 
-  [@bs.obj]
-  external html: (~html: string=?, ~baseUrl: string=?, unit) => t = "";
+  [@bs.obj] external html: (~html: string=?, ~baseUrl: string=?, unit) => t;
 };
 
 module DataDetectorTypes = ReactNativeWebView_DataDetectorTypes;
@@ -88,24 +87,48 @@ class type virtual webViewShouldStartLoadWithRequest = {
 
 type webViewNavigationOrError;
 
-type webViewErrorEvent =
-  ReactNative.Event.syntheticEvent(Js.t(webViewError));
-type webViewHttpErrorEvent =
-  ReactNative.Event.syntheticEvent(Js.t(webViewHttpError));
-type webViewMessageEvent =
-  ReactNative.Event.syntheticEvent(Js.t(webViewMessage));
-type webViewNavigationEvent =
-  ReactNative.Event.syntheticEvent(Js.t(webViewNavigation));
-type webViewProgressEvent =
-  ReactNative.Event.syntheticEvent(Js.t(webViewNativeProgressEvent));
-type webViewTerminatedEvent =
-  ReactNative.Event.syntheticEvent(Js.t(webViewNativeEvent));
+module WebViewErrorEvent = {
+  type payload = Js.t(webViewError);
+  include Event.SyntheticEvent({
+    type _payload = payload;
+  });
+};
+module WebViewHttpErrorEvent = {
+  type payload = Js.t(webViewHttpError);
+  include Event.SyntheticEvent({
+    type _payload = payload;
+  });
+};
+module WebViewMessageEvent = {
+  type payload = Js.t(webViewMessage);
+  include Event.SyntheticEvent({
+    type _payload = payload;
+  });
+};
+module WebViewNavigationEvent = {
+  type payload = Js.t(webViewNavigation);
+  include Event.SyntheticEvent({
+    type _payload = payload;
+  });
+};
+module WebViewProgressEvent = {
+  type payload = Js.t(webViewNativeProgressEvent);
+  include Event.SyntheticEvent({
+    type _payload = payload;
+  });
+};
+module WebViewTerminatedEvent = {
+  type payload = Js.t(webViewNativeEvent);
+  include Event.SyntheticEvent({
+    type _payload = payload;
+  });
+};
 
 module UnionCallback =
   ReactNativeWebView_UnionCallback.Make({
     type union = Js.t(webViewNavigationOrError);
-    type navigationEvent = webViewNavigationEvent;
-    type errorEvent = webViewErrorEvent;
+    type navigationEvent = WebViewNavigationEvent.t;
+    type errorEvent = WebViewErrorEvent.t;
   });
 
 type nativeConfig;
@@ -117,8 +140,7 @@ external nativeConfig:
     ~props: Js.t('b)=?,
     ~viewManager: Js.t('c)=?
   ) =>
-  nativeConfig =
-  "";
+  nativeConfig;
 
 [@react.component] [@bs.module "react-native-webview"]
 external make:
@@ -146,7 +168,7 @@ external make:
                   =?,
     ~containerStyle: ReactNative.Style.t=?,
     ~contentInset: ReactNative.View.edgeInsets=?,
-    ~contentInsetAdjustmentBehavior: [@bs.string] [
+    ~contentInsetAdjustmentBehavior: [
                                        | `never
                                        | `always
                                        | `automatic
@@ -167,22 +189,22 @@ external make:
     ~javaScriptEnabled: bool=?,
     ~keyboardDisplayRequiresUserAction: bool=?,
     ~mediaPlaybackRequiresUserAction: bool=?,
-    ~mixedContentMode: [@bs.string] [ | `never | `always | `compatibility]=?,
+    ~mixedContentMode: [ | `never | `always | `compatibility]=?,
     ~nativeConfig: nativeConfig=?,
-    ~onContentProcessDidTerminate: webViewTerminatedEvent => unit=?,
-    ~onError: webViewErrorEvent => unit=?,
-    ~onHttpError: webViewHttpErrorEvent => unit=?,
-    ~onLoad: webViewNavigationEvent => unit=?,
+    ~onContentProcessDidTerminate: WebViewTerminatedEvent.t => unit=?,
+    ~onError: WebViewErrorEvent.t => unit=?,
+    ~onHttpError: WebViewHttpErrorEvent.t => unit=?,
+    ~onLoad: WebViewNavigationEvent.t => unit=?,
     ~onLoadEnd: UnionCallback.t=?,
-    ~onLoadProgress: webViewProgressEvent => unit=?,
-    ~onLoadStart: webViewNavigationEvent => unit=?,
-    ~onMessage: webViewMessageEvent => unit=?,
+    ~onLoadProgress: WebViewProgressEvent.t => unit=?,
+    ~onLoadStart: WebViewNavigationEvent.t => unit=?,
+    ~onMessage: WebViewMessageEvent.t => unit=?,
     ~onNavigationStateChange: Js.t(webViewNavigation) => unit=?,
     ~onShouldStartLoadWithRequest: Js.t(webViewShouldStartLoadWithRequest) =>
                                    bool
                                      =?,
     ~originWhitelist: array(string)=?,
-    ~overScrollMode: [@bs.string] [ | `never | `always | `content]=?,
+    ~overScrollMode: [ | `never | `always | `content]=?,
     ~pagingEnabled: bool=?,
     ~renderError: string => React.element=?,
     ~renderLoading: unit => React.element=?,
@@ -197,39 +219,20 @@ external make:
     ~textZoom: float=?,
     ~thirdPartyCookiesEnabled: bool=?,
     ~userAgent: string=?,
-    // View props
-    ~accessibilityComponentType: [@bs.string] [
-                                   | `none
-                                   | `button
-                                   | `radiobutton_checked
-                                   | `radiobutton_unchecked
-                                 ]
-                                   =?,
+    // View props 0.63.0
+    ~accessibilityActions: array(Accessibility.actionInfo)=?,
     ~accessibilityElementsHidden: bool=?,
     ~accessibilityHint: string=?,
     ~accessibilityIgnoresInvertColors: bool=?,
     ~accessibilityLabel: string=?,
-    ~accessibilityLiveRegion: [@bs.string] [ | `none | `polite | `assertive]=?,
-    ~accessibilityRole: [@bs.string] [
-                          | `none
-                          | `button
-                          | `link
-                          | `search
-                          | `image
-                          | `keyboardkey
-                          | `text
-                          | `adjustable
-                          | `header
-                          | `summary
-                          | `imagebutton
-                        ]
-                          =?,
-    ~accessibilityStates: array(ReactNative.AccessibilityState.t)=?,
-    ~accessibilityTraits: array(ReactNative.AccessibilityTrait.t)=?,
+    ~accessibilityLiveRegion: Accessibility.liveRegion=?,
+    ~accessibilityRole: Accessibility.role=?,
+    ~accessibilityState: Accessibility.state=?,
+    ~accessibilityValue: Accessibility.value=?,
     ~accessibilityViewIsModal: bool=?,
     ~accessible: bool=?,
     ~collapsable: bool=?,
-    ~hitSlop: ReactNative.View.edgeInsets=?,
+    ~hitSlop: View.edgeInsets=?,
     ~importantForAccessibility: [@bs.string] [
                                   | `auto
                                   | `yes
@@ -240,23 +243,24 @@ external make:
                                   =?,
     ~nativeID: string=?,
     ~needsOffscreenAlphaCompositing: bool=?,
+    ~onAccessibilityAction: Accessibility.actionEvent => unit=?,
     ~onAccessibilityEscape: unit => unit=?,
     ~onAccessibilityTap: unit => unit=?,
-    ~onLayout: ReactNative.Event.layoutEvent => unit=?,
+    ~onLayout: Event.layoutEvent => unit=?,
     ~onMagicTap: unit => unit=?,
     // Gesture Responder props
-    ~onMoveShouldSetResponder: ReactNative.Event.pressEvent => bool=?,
-    ~onMoveShouldSetResponderCapture: ReactNative.Event.pressEvent => bool=?,
-    ~onResponderEnd: ReactNative.Event.pressEvent => unit=?,
-    ~onResponderGrant: ReactNative.Event.pressEvent => unit=?,
-    ~onResponderMove: ReactNative.Event.pressEvent => unit=?,
-    ~onResponderReject: ReactNative.Event.pressEvent => unit=?,
-    ~onResponderRelease: ReactNative.Event.pressEvent => unit=?,
-    ~onResponderStart: ReactNative.Event.pressEvent => unit=?,
-    ~onResponderTerminate: ReactNative.Event.pressEvent => unit=?,
-    ~onResponderTerminationRequest: ReactNative.Event.pressEvent => bool=?,
-    ~onStartShouldSetResponder: ReactNative.Event.pressEvent => bool=?,
-    ~onStartShouldSetResponderCapture: ReactNative.Event.pressEvent => bool=?,
+    ~onMoveShouldSetResponder: Event.pressEvent => bool=?,
+    ~onMoveShouldSetResponderCapture: Event.pressEvent => bool=?,
+    ~onResponderEnd: Event.pressEvent => unit=?,
+    ~onResponderGrant: Event.pressEvent => unit=?,
+    ~onResponderMove: Event.pressEvent => unit=?,
+    ~onResponderReject: Event.pressEvent => unit=?,
+    ~onResponderRelease: Event.pressEvent => unit=?,
+    ~onResponderStart: Event.pressEvent => unit=?,
+    ~onResponderTerminate: Event.pressEvent => unit=?,
+    ~onResponderTerminationRequest: Event.pressEvent => bool=?,
+    ~onStartShouldSetResponder: Event.pressEvent => bool=?,
+    ~onStartShouldSetResponderCapture: Event.pressEvent => bool=?,
     ~pointerEvents: [@bs.string] [
                       | `auto
                       | `none
@@ -267,8 +271,17 @@ external make:
     ~removeClippedSubviews: bool=?,
     ~renderToHardwareTextureAndroid: bool=?,
     ~shouldRasterizeIOS: bool=?,
-    ~style: ReactNative.Style.t=?,
-    ~testID: string=?
+    ~style: Style.t=?,
+    ~testID: string=?,
+    ~children: React.element=?,
+    // React Native Web Props
+    ~onMouseDown: ReactEvent.Mouse.t => unit=?,
+    ~onMouseEnter: ReactEvent.Mouse.t => unit=?,
+    ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
+    ~onMouseMove: ReactEvent.Mouse.t => unit=?,
+    ~onMouseOver: ReactEvent.Mouse.t => unit=?,
+    ~onMouseOut: ReactEvent.Mouse.t => unit=?,
+    ~onMouseUp: ReactEvent.Mouse.t => unit=?
   ) =>
   React.element =
   "default";
