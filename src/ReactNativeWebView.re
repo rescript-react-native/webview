@@ -189,6 +189,7 @@ external make:
                                        | `scrollableAxes
                                      ]
                                        =?,
+    ~contentMode: [ | `recommended | `mobile | `desktop]=?,
     ~dataDetectorTypes: array(DataDetectorTypes.t)=?,
     ~decelerationRate: DecelerationRate.t=?,
     ~directionalLockEnabled: bool=?,

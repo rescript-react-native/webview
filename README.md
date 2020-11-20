@@ -465,6 +465,14 @@ _iOS only_
 
 Specifies how safe area insets are used to modify content area of the scroll view, defaults to `` `never ``. Available on iOS 11 and later.
 
+#### `` contentMode: [ | `recommended | `mobile | `desktop] ``
+
+_iOS only_
+
+Controls the type of content to load. Available on iOS 13 and later. Defaults to `recommended`, which loads mobile content on iPhone & iPad Mini but desktop content on larger iPads.
+
+More info at <https://github.com/react-native-webview/react-native-webview/blob/master/docs/Reference.md#contentMode>
+
 #### `dataDetectorTypes: array(DataDetectorTypes.t)`
 
 Specifies types of data to be converted to clickable URLs in content of the WebView, defaults to `[|DataDetectorTypes.phoneNumber|]`. Refer to [`DataDetectorTypes.t`](#datadetectortypest) for all valid values.
@@ -624,7 +632,7 @@ _iOS only_
 
 Specifies function to be invoked when the `WebView` is about to download a file.
 
-<https://github.com/react-native-webview/react-native-webview/blob/master/docs/Reference.md#onFileDownload>
+More info at <https://github.com/react-native-webview/react-native-webview/blob/master/docs/Reference.md#onFileDownload>
 
 #### `onError: WebViewErrorEvent.t => unit`
 
@@ -665,7 +673,7 @@ Note that this method will not be invoked on hash URL changes (e.g. from https:/
 _Android only_
 Function that is invoked when the `WebView` process crashes or is killed by the OS.
 
-<https://github.com/react-native-webview/react-native-webview/blob/master/docs/Reference.md#onRenderProcessGone>
+More info at <https://github.com/react-native-webview/react-native-webview/blob/master/docs/Reference.md#onRenderProcessGone>
 
 #### `onShouldStartLoadWithRequest: Js.t(webViewShouldStartLoadWithRequest) => bool`
 
