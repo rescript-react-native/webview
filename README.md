@@ -615,6 +615,14 @@ Specifies function to be invoked when the WebView content process is terminated.
 />
 ```
 
+#### `onFileDownload: WebViewDownloadEvent.t => unit`
+
+_iOS only_
+
+Specifies function to be invoked when the `WebView` is about to download a file.
+
+<https://github.com/react-native-webview/react-native-webview/blob/master/docs/Reference.md#onFileDownload>
+
 #### `onError: WebViewErrorEvent.t => unit`
 
 Specifies function to be invoked when the `WebView` fails to load.

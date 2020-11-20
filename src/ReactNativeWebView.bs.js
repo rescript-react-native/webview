@@ -8,6 +8,10 @@ var Source = {};
 
 Event$ReactNative.SyntheticEvent({});
 
+var WebViewDownloadEvent = {};
+
+Event$ReactNative.SyntheticEvent({});
+
 var WebViewErrorEvent = {};
 
 Event$ReactNative.SyntheticEvent({});
@@ -42,6 +46,7 @@ exports.Source = Source;
 exports.DataDetectorTypes = DataDetectorTypes;
 exports.DecelerationRate = DecelerationRate;
 exports.NavigationType = NavigationType;
+exports.WebViewDownloadEvent = WebViewDownloadEvent;
 exports.WebViewErrorEvent = WebViewErrorEvent;
 exports.WebViewHttpErrorEvent = WebViewHttpErrorEvent;
 exports.WebViewMessageEvent = WebViewMessageEvent;

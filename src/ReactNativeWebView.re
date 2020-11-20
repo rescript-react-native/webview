@@ -87,6 +87,14 @@ class type virtual webViewShouldStartLoadWithRequest = {
 
 type webViewNavigationOrError;
 
+module WebViewDownloadEvent = {
+  type payload = {downloadUrl: string};
+
+  include Event.SyntheticEvent({
+    type _payload = payload;
+  });
+};
+
 module WebViewErrorEvent = {
   type payload = Js.t(webViewError);
   include Event.SyntheticEvent({
@@ -192,6 +200,7 @@ external make:
     ~mixedContentMode: [ | `never | `always | `compatibility]=?,
     ~nativeConfig: nativeConfig=?,
     ~onContentProcessDidTerminate: WebViewTerminatedEvent.t => unit=?,
+    ~onFileDownload: WebViewDownloadEvent.t => unit=?,
     ~onError: WebViewErrorEvent.t => unit=?,
     ~onHttpError: WebViewHttpErrorEvent.t => unit=?,
     ~onLoad: WebViewNavigationEvent.t => unit=?,
