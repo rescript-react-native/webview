@@ -534,7 +534,6 @@ Script specified with `injectedJavaScript` will be loaded for all frames (main f
 
 #### `injectedJavaScriptBeforeContentLoaded: string`
 
-_iOS only_
 Specifies JavaScript that will be injected into the web page after the document element is created, but before any other content is loaded. The string should evaluate to a valid type (e.g. `true`) and not otherwise throw an exception.
 
 Example below passes`window.location` as a JSON object to be handled by the function passed to `onMessage`
