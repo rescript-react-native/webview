@@ -401,6 +401,12 @@ _Android only_
 
 Disables Hardware Acceleration in the WebView when `true`, defaults to `false`.
 
+#### `` androidLayerType: [ | `none | `software | `hardware ] ``
+
+_Android only_
+
+Specifies the layer type.
+
 #### `applicationNameForUserAgent: string`
 
 Specifies `string` value to append to the `User-Agent` header, will be overridden if `userAgent` is set.

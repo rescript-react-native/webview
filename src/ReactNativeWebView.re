@@ -170,6 +170,7 @@ external make:
     ~allowsInlineMediaPlayback: bool=?,
     ~allowsLinkPreview: bool=?,
     ~androidHardwareAccelerationDisabled: bool=?,
+    ~androidLayerType: [ | `none | `software | `hardware]=?,
     ~applicationNameForUserAgent: string=?,
     ~automaticallyAdjustContentInsets: bool=?,
     ~bounces: bool=?,
