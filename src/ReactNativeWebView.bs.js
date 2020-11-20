@@ -32,6 +32,10 @@ var WebViewProgressEvent = {};
 
 Event$ReactNative.SyntheticEvent({});
 
+var WebViewRenderProcessGone = {};
+
+Event$ReactNative.SyntheticEvent({});
+
 var WebViewTerminatedEvent = {};
 
 var UnionCallback = ReactNativeWebView_UnionCallback.Make({});
@@ -52,6 +56,7 @@ exports.WebViewHttpErrorEvent = WebViewHttpErrorEvent;
 exports.WebViewMessageEvent = WebViewMessageEvent;
 exports.WebViewNavigationEvent = WebViewNavigationEvent;
 exports.WebViewProgressEvent = WebViewProgressEvent;
+exports.WebViewRenderProcessGone = WebViewRenderProcessGone;
 exports.WebViewTerminatedEvent = WebViewTerminatedEvent;
 exports.UnionCallback = UnionCallback;
 /*  Not a pure module */

@@ -125,6 +125,12 @@ module WebViewProgressEvent = {
     type _payload = payload;
   });
 };
+module WebViewRenderProcessGone = {
+  type payload = {didCrash: bool};
+  include Event.SyntheticEvent({
+    type _payload = payload;
+  });
+};
 module WebViewTerminatedEvent = {
   type payload = Js.t(webViewNativeEvent);
   include Event.SyntheticEvent({
@@ -210,6 +216,7 @@ external make:
     ~onLoadStart: WebViewNavigationEvent.t => unit=?,
     ~onMessage: WebViewMessageEvent.t => unit=?,
     ~onNavigationStateChange: Js.t(webViewNavigation) => unit=?,
+    ~onRenderProcessGone: WebViewRenderProcessGone.t => unit=?,
     ~onShouldStartLoadWithRequest: Js.t(webViewShouldStartLoadWithRequest) =>
                                    bool
                                      =?,

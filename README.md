@@ -660,6 +660,13 @@ Specifies function to be invoked when the WebView starts or ends loading.
 
 Note that this method will not be invoked on hash URL changes (e.g. from https://example.com/users#list to https://example.com/users#help). A workaround may be found in the [Guide](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Guide.md#intercepting-hash-url-changes).
 
+#### `onRenderProcessGone: WebViewRenderProcessGone.t => unit`
+
+_Android only_
+Function that is invoked when the `WebView` process crashes or is killed by the OS.
+
+<https://github.com/react-native-webview/react-native-webview/blob/master/docs/Reference.md#onRenderProcessGone>
+
 #### `onShouldStartLoadWithRequest: Js.t(webViewShouldStartLoadWithRequest) => bool`
 
 Allows custom handling of any `WebView` requests. Specified function should return `true` to allow requests and `false` to stop loading.
