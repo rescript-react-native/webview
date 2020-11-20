@@ -194,6 +194,7 @@ external make:
     ~injectedJavaScriptForMainFrameOnly: bool=?,
     ~injectedJavaScriptBeforeContentLoaded: string=?,
     ~injectedJavaScriptBeforeContentLoadedForMainFrameOnly: bool=?,
+    ~javaScriptCanOpenWindowsAutomatically: bool=?,
     ~javaScriptEnabled: bool=?,
     ~keyboardDisplayRequiresUserAction: bool=?,
     ~mediaPlaybackRequiresUserAction: bool=?,

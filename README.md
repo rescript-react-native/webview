@@ -562,6 +562,10 @@ Script specified with `injectedJavaScriptBeforeContentLoaded` will be loaded for
 
 Note that it may not be possible to inject JS into iframes in this stage of the page lifecycle, therefore exercise caution when setting to `false`.
 
+### `javaScriptCanOpenWindowsAutomatically: bool`
+
+A Boolean value indicating whether JavaScript can open windows without user interaction. The default value is `false`.
+
 #### `javaScriptEnabled: bool`
 
 _Android only_
