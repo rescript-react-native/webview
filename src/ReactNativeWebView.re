@@ -225,6 +225,7 @@ external make:
     ~originWhitelist: array(string)=?,
     ~overScrollMode: [ | `never | `always | `content]=?,
     ~pagingEnabled: bool=?,
+    ~pullToRefreshEnabled: bool=?,
     ~renderError: string => React.element=?,
     ~renderLoading: unit => React.element=?,
     ~saveFormDataDisabled: bool=?,

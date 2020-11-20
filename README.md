@@ -471,7 +471,7 @@ _iOS only_
 
 Controls the type of content to load. Available on iOS 13 and later. Defaults to `recommended`, which loads mobile content on iPhone & iPad Mini but desktop content on larger iPads.
 
-More info at <https://github.com/react-native-webview/react-native-webview/blob/master/docs/Reference.md#contentMode>
+More at <https://github.com/react-native-webview/react-native-webview/blob/master/docs/Reference.md#contentMode>
 
 #### `dataDetectorTypes: array(DataDetectorTypes.t)`
 
@@ -632,7 +632,7 @@ _iOS only_
 
 Specifies function to be invoked when the `WebView` is about to download a file.
 
-More info at <https://github.com/react-native-webview/react-native-webview/blob/master/docs/Reference.md#onFileDownload>
+More at <https://github.com/react-native-webview/react-native-webview/blob/master/docs/Reference.md#onFileDownload>
 
 #### `onError: WebViewErrorEvent.t => unit`
 
@@ -673,7 +673,7 @@ Note that this method will not be invoked on hash URL changes (e.g. from https:/
 _Android only_
 Function that is invoked when the `WebView` process crashes or is killed by the OS.
 
-More info at <https://github.com/react-native-webview/react-native-webview/blob/master/docs/Reference.md#onRenderProcessGone>
+More at <https://github.com/react-native-webview/react-native-webview/blob/master/docs/Reference.md#onRenderProcessGone>
 
 #### `onShouldStartLoadWithRequest: Js.t(webViewShouldStartLoadWithRequest) => bool`
 
@@ -702,6 +702,14 @@ Specifies the over scroll mode, defaults to `` `always ``.
 _iOS only_
 
 As the user scrolls, scroll view stops on multiples of the its bounds when `true`, defaults to `false`.
+
+#### `pullToRefreshEnabled: bool`
+
+_iOS only_
+
+Boolean value that determines whether a pull to refresh gesture is available in the `WebView`. The default value is `false`. If `true`, sets `bounces` automatically to `true`.
+
+More at <https://github.com/react-native-webview/react-native-webview/blob/master/docs/Reference.md#pullToRefreshEnabled>
 
 #### `renderError: string => React.element`
 
