@@ -142,8 +142,8 @@ Creates a function of type `UnionCallback.t`
 ```reason
 make:
   (
-    ~navigationCallback: webViewNavigationEvent => unit,
-    ~errorCallback: webViewErrorEvent => unit
+    ~navigationCallback: WebViewNavigationEvent.t => unit,
+    ~errorCallback: WebViewErrorEvent.t => unit
   ) =>
   t;
 ```
@@ -288,7 +288,7 @@ Has the below keys, which can be accessed with `##`.
 wraps [`Js.t(webViewError)`](#jstwebviewerror) in `ReactNative.Event.syntheticEvent`
 
 ```reason
-type webViewErrorEvent =
+type WebViewErrorEvent.t =
   ReactNative.Event.syntheticEvent(Js.t(webViewError));
 ```
 
@@ -299,7 +299,7 @@ passed to the handler specified for [`onError`](#onerror-webviewerrorevent--unit
 wraps [`Js.t(webViewHttpError)`](#jstwebviewhttperror) in `ReactNative.Event.syntheticEvent`
 
 ```reason
-type webViewHttpErrorEvent =
+type WebViewHttpErrorEvent.t =
   ReactNative.Event.syntheticEvent(Js.t(webViewHttpError));
 ```
 
@@ -310,7 +310,7 @@ passed to the handler specified for [`onHttpError`](#onhttperror-webviewhttperro
 wraps [`Js.t(webViewMessage)`](#jstwebviewmessage) in `ReactNative.Event.syntheticEvent`
 
 ```reason
-type webViewMessageEvent =
+type WebViewMessageEvent.t =
   ReactNative.Event.syntheticEvent(Js.t(webViewMessage));
 ```
 
@@ -321,7 +321,7 @@ passed to the handler specified for [`onMessage`](#onmessage-webviewmessageevent
 wraps [`Js.t(webViewNavigation)`](#jstwebviewnavigation) in `ReactNative.Event.syntheticEvent`
 
 ```reason
-type webViewNavigationEvent =
+type WebViewNavigationEvent.t =
   ReactNative.Event.syntheticEvent(Js.t(webViewNavigation));
 ```
 
@@ -332,7 +332,7 @@ passed to handlers specified for [`onLoad`](#onload-webviewnavigationevent--unit
 wraps [`Js.t(webViewNativeProgressEvent)`](#jstwebviewnativeprogressevent) in `ReactNative.Event.syntheticEvent`
 
 ```reason
-type webViewProgressEvent =
+type WebViewProgressEvent.t =
   ReactNative.Event.syntheticEvent(Js.t(webViewNativeProgressEvent));
 ```
 
@@ -343,7 +343,7 @@ passed to the handler specified for [`onLoadProgress`](#onloadprogress-webviewpr
 wraps [`Js.t(webViewNativeEvent)`](#jstwebviewnativeevent) in `ReactNative.Event.syntheticEvent`
 
 ```reason
-type webViewTerminatedEvent =
+type WebViewTerminatedEvent.t =
   ReactNative.Event.syntheticEvent(webViewNativeEvent);
 ```
 
@@ -598,7 +598,7 @@ Overrides the native component used to render the `WebView`. Enables a custom na
 
 You may refer to [iOS-](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Custom-iOS.md) and [Android-](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Custom-Android.md)specific guides on how to create a custom `WebView`.
 
-#### `onContentProcessDidTerminate: webViewTerminatedEvent => unit`
+#### `onContentProcessDidTerminate: WebViewTerminatedEvent.t => unit`
 
 _iOS only_
 
@@ -615,11 +615,11 @@ Specifies function to be invoked when the WebView content process is terminated.
 />
 ```
 
-#### `onError: webViewErrorEvent => unit`
+#### `onError: WebViewErrorEvent.t => unit`
 
 Specifies function to be invoked when the `WebView` fails to load.
 
-#### `onLoad: webViewNavigationEvent => unit`
+#### `onLoad: WebViewNavigationEvent.t => unit`
 
 Specifies function to be invoked when the `WebView` has finished loading.
 
@@ -627,15 +627,15 @@ Specifies function to be invoked when the `WebView` has finished loading.
 
 Specifies function to be invoked when the `WebView` succeeds or fails to load.
 
-#### `onLoadProgress: webViewProgressEvent => unit`
+#### `onLoadProgress: WebViewProgressEvent.t => unit`
 
 Specifies function to be invoked while the `WebView` is loading.
 
-#### `onLoadStart: webViewNavigationEvent => unit`
+#### `onLoadStart: WebViewNavigationEvent.t => unit`
 
 Specifies function to be invoked when the `WebView` starts to load.
 
-#### `onMessage: webViewMessageEvent => unit`
+#### `onMessage: WebViewMessageEvent.t => unit`
 
 Specifies function to be invoked when the `WebView` calls `window.ReactNativeWebView.postMessage`. Setting this prop will inject that global into the webview.
 
