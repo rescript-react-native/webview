@@ -83,6 +83,7 @@ class type virtual webViewShouldStartLoadWithRequest = {
   pub navigationType: ReactNativeWebView_NavigationType.t;
   pub mainDocumentURL: option(string);
   pub lockIdentifier: int;
+  pub isTopFrame: bool;
 };
 
 type webViewNavigationOrError;
