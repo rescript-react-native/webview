@@ -1,10 +1,10 @@
-# Changelog of `@reason-react-native/webview`
+# Changelog of `@rescript-react-native/webview`
 
 ## 10.8.0 - 2020-11-20
 
 - 10.8.0 compat
 - rescript 8.2 required
-- reason-react-native 0.63 View props
+- rescript-react-native 0.63 View props
 
 ## 9.0.0 - 2020-03-19
 

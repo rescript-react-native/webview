@@ -1,15 +1,15 @@
-# `@reason-react-native/webview`
+# `@rescript-react-native/webview`
 
-[![Build Status](https://github.com/reason-react-native/webview/workflows/Build/badge.svg)](https://github.com/reason-react-native/webview/actions)
-[![Version](https://img.shields.io/npm/v/@reason-react-native/webview.svg)](https://www.npmjs.com/@reason-react-native/webview)
-[![Chat](https://img.shields.io/discord/235176658175262720.svg?logo=discord&colorb=blue)](https://reasonml-community.github.io/reason-react-native/discord/)
+[![Build Status](https://github.com/rescript-react-native/webview/workflows/Build/badge.svg)](https://github.com/rescript-react-native/webview/actions)
+[![Version](https://img.shields.io/npm/v/@rescript-react-native/webview.svg)](https://www.npmjs.com/@rescript-react-native/webview)
+[![ReScript Forum](https://img.shields.io/discourse/posts?color=e6484f&label=ReScript%20Forum&server=https%3A%2F%2Fforum.rescript-lang.org)](https://forum.rescript-lang.org/)
 
-[ReScript](https://rescript-lang.org) / [Reason](https://reasonml.github.io) bindings for
+[ReScript](https://rescript-lang.org) bindings for
 [`react-native-webview`](https://github.com/react-native-webview/react-native-webview).
 
 Exposed as the `ReactNativeWebView` module.
 
-`@reason-react-native/webview` X.y.\* means it's compatible with
+`@rescript-react-native/webview` X.y.\* means it's compatible with
 `@react-native-community/react-native-webview` X.y.\*
 
 ## Installation
@@ -20,22 +20,22 @@ is properly installed & configured by following their installation instructions,
 you can install the bindings:
 
 ```console
-npm install @reason-react-native/webview
+npm install @rescript-react-native/webview
 # or
-yarn add @reason-react-native/webview
+yarn add @rescript-react-native/webview
 ```
 
-`@reason-react-native/webview` should be added to `bs-dependencies` in your
+`@rescript-react-native/webview` should be added to `bs-dependencies` in your
 `bsconfig.json`. For example,
 
 ```diff
 {
   //...
   "bs-dependencies": [
-    "reason-react",
-    "reason-react-native",
+    "@rescript/react",
+    "rescript-react-native",
     // ...
-+    "@reason-react-native/webview"
++    "@rescript-react-native/webview"
   ],
   //...
 }
@@ -63,7 +63,7 @@ Valid values are:
 
 Values may be created using `DecelerationRate.value`
 
-```reason
+```rescript
 value: float => t
 ```
 
@@ -88,7 +88,7 @@ Source to be loaded in the `WebView`, as specified by the [`source`(#source-sour
 
 Creates a URI source
 
-```reason
+```rescript
 uri:
     (
       ~uri: string=?,
@@ -120,7 +120,7 @@ uri:
 
 Creates a static HTML source
 
-```reason
+```rescript
 html: (~html: string=?, ~baseUrl: string=?, unit) => t
 ```
 
@@ -131,7 +131,7 @@ html: (~html: string=?, ~baseUrl: string=?, unit) => t
 
 Type of function passed to the [`onLoadEnd`](#onloadend-unioncallbackt) prop, to handle the union type [`webViewNavigationOrError`](#webviewnavigationorerror). Defined as
 
-```reason
+```rescript
 ReactNative.Event.syntheticEvent(Js.t(webViewNavigationOrError)) => unit
 ```
 
@@ -139,7 +139,7 @@ ReactNative.Event.syntheticEvent(Js.t(webViewNavigationOrError)) => unit
 
 Creates a function of type `UnionCallback.t`
 
-```reason
+```rescript
 make:
   (
     ~navigationCallback: WebViewNavigationEvent.t => unit,
@@ -152,7 +152,7 @@ make:
 
 Creates a function of type `UnionCallback.t`
 
-```reason
+```rescript
 uncurriedMake:
   (
     ~navigationCallback:(. webViewNavigationEvent) => unit,
@@ -169,7 +169,7 @@ Represents a `WebView` instance, to be used with [methods](#methods).
 
 Should be constructed as below:
 
-```reason
+```rescript
 nativeConfig:
   (
     ~component: React.component('a)=?,
@@ -185,7 +185,7 @@ You may refer to [iOS↗](https://github.com/react-native-webview/react-native-w
 
 React `ref` intended to access a `WebView` instance. Defined as
 
-```reason
+```rescript
 type ref = React.Ref.t(Js.nullable(element))
 ```
 
@@ -287,7 +287,7 @@ Has the below keys, which can be accessed with `##`.
 
 wraps [`Js.t(webViewError)`](#jstwebviewerror) in `ReactNative.Event.syntheticEvent`
 
-```reason
+```rescript
 type WebViewErrorEvent.t =
   ReactNative.Event.syntheticEvent(Js.t(webViewError));
 ```
@@ -298,7 +298,7 @@ passed to the handler specified for [`onError`](#onerror-webviewerrorevent--unit
 
 wraps [`Js.t(webViewHttpError)`](#jstwebviewhttperror) in `ReactNative.Event.syntheticEvent`
 
-```reason
+```rescript
 type WebViewHttpErrorEvent.t =
   ReactNative.Event.syntheticEvent(Js.t(webViewHttpError));
 ```
@@ -309,7 +309,7 @@ passed to the handler specified for [`onHttpError`](#onhttperror-webviewhttperro
 
 wraps [`Js.t(webViewMessage)`](#jstwebviewmessage) in `ReactNative.Event.syntheticEvent`
 
-```reason
+```rescript
 type WebViewMessageEvent.t =
   ReactNative.Event.syntheticEvent(Js.t(webViewMessage));
 ```
@@ -320,7 +320,7 @@ passed to the handler specified for [`onMessage`](#onmessage-webviewmessageevent
 
 wraps [`Js.t(webViewNavigation)`](#jstwebviewnavigation) in `ReactNative.Event.syntheticEvent`
 
-```reason
+```rescript
 type WebViewNavigationEvent.t =
   ReactNative.Event.syntheticEvent(Js.t(webViewNavigation));
 ```
@@ -331,7 +331,7 @@ passed to handlers specified for [`onLoad`](#onload-webviewnavigationevent--unit
 
 wraps [`Js.t(webViewNativeProgressEvent)`](#jstwebviewnativeprogressevent) in `ReactNative.Event.syntheticEvent`
 
-```reason
+```rescript
 type WebViewProgressEvent.t =
   ReactNative.Event.syntheticEvent(Js.t(webViewNativeProgressEvent));
 ```
@@ -342,7 +342,7 @@ passed to the handler specified for [`onLoadProgress`](#onloadprogress-webviewpr
 
 wraps [`Js.t(webViewNativeEvent)`](#jstwebviewnativeevent) in `ReactNative.Event.syntheticEvent`
 
-```reason
+```rescript
 type WebViewTerminatedEvent.t =
   ReactNative.Event.syntheticEvent(webViewNativeEvent);
 ```
@@ -413,7 +413,7 @@ Specifies `string` value to append to the `User-Agent` header, will be overridde
 
 For example when `applicationNameForUserAgent="DemoApp/1.1.0"` as below:
 
-```reason
+```rescript
 <ReactNativeWebView
   source=ReactNativeWebView.Source.uri(~uri="https://facebook.github.io/react-native", ())
   applicationNameForUserAgent="DemoApp/1.1.0"
@@ -463,7 +463,7 @@ allows to customize the WebView container style. Please note that there are defa
 
 #### `contentInset: ReactNative.View.edgeInsets`
 
-Refer to [`reason-react-native` documentation on View](https://github.com/reason-react-native/reason-react-native/blob/master/src/components/View.md).
+Refer to [`rescript-react-native` documentation on View](https://github.com/rescript-react-native/rescript-react-native/blob/master/src/components/View.md).
 
 #### `` contentInsetAdjustmentBehavior: [ | `never | `always | `automatic | `scrollableAxes] ``
 
@@ -523,7 +523,7 @@ Specifies JavaScript that will be injected into the web page when loaded. The st
 
 Example below passes`window.location` as a JSON object to be handled by the function passed to `onMessage`
 
-```reason
+```rescript
 let injectedJavaScript = "(function() {
   window.ReactNativeWebView.postMessage(JSON.stringify(window.location));
 })();";
@@ -552,7 +552,7 @@ Specifies JavaScript that will be injected into the web page after the document 
 
 Example below passes`window.location` as a JSON object to be handled by the function passed to `onMessage`
 
-```reason
+```rescript
 let injectedJavaScript = "(function() {
   window.ReactNativeWebView.postMessage(JSON.stringify(window.location));
 })();";
@@ -621,7 +621,7 @@ _iOS only_
 
 Specifies function to be invoked when the WebView content process is terminated. The process may be terminated due to reasons such as running too long or using too many resources, however, once terminated a blank page is displayed and the `WebView` becomes unusable. Please refer to the [PR](https://github.com/react-native-webview/react-native-webview/pull/774) which added the functionality to allow handling this issue.
 
-```reason
+```rescript
 <ReactNativeWebView
   source=ReactNativeWebView.Source.uri(~uri="https://facebook.github.io/react-native", ())
   onContentProcessDidTerminate={_ =>
@@ -721,7 +721,7 @@ More at <https://github.com/react-native-webview/react-native-webview/blob/maste
 
 Specifies a function to be invoked when there is an error.
 
-```reason
+```rescript
 <ReactNativeWebView
   source=ReactNativeWebView.Source.uri(~uri="https://facebook.github.io/react-native", ())
   renderError={errorName => <Error name=errorName />}
@@ -732,7 +732,7 @@ Specifies a function to be invoked when there is an error.
 
 Specifies a function to be invoked when the `WebView` is loading. Requires setting `startInLoadingState=true` .
 
-```reason
+```rescript
 <ReactNativeWebView
   source=ReactNativeWebView.Source.uri(~uri="https://facebook.github.io/react-native", ())
   startInLoadingState=true
@@ -803,8 +803,8 @@ Specifies `User-Agent` header for the WebView
 ### `View` props
 
 Refer to
-[`reason-react-native`](https://github.com/reason-react-native/react-native)
-[documentation](https://reason-react-native.github.io/en/docs/components/View/).
+[`rescript-react-native`](https://github.com/rescript-react-native/react-native)
+[documentation](https://rescript-react-native.github.io/en/docs/components/View/).
 
 Please do note the below:
 
@@ -816,7 +816,7 @@ allows to customize the WebView style. Please note that there are default styles
 
 For the methods below, [`element`](#element) representing the `WebView` instance needs to be determined from the [`ref`](#ref) which itself can be defined and passed to the `WebView` [`ref`](#ref-ref) prop as below:
 
-```reason
+```rescript
 let ref = React.createRef();
 
 <ReactNativeWebView
@@ -825,7 +825,7 @@ let ref = React.createRef();
 
 The `element` can be determined and the method [`reload`](#reload-element--unit) may be called as below:
 
-```reason
+```rescript
 switch (ref -> React.Ref.current -> Js.Nullable.toOption) {
 | None => Js.Console.warn("no element")
 | Some(e) => ReactNativeWebView.reload(e)
@@ -882,10 +882,10 @@ releases.
 
 ## Contribute
 
-Read the [contribution guidelines](https://github.com/reason-react-native/.github/blob/master/CONTRIBUTING.md) before contributing.
+Read the [contribution guidelines](https://github.com/rescript-react-native/.github/blob/master/CONTRIBUTING.md) before contributing.
 
 ## Code of Conduct
 
 We want this community to be friendly and respectful to each other. Please read
-[our full code of conduct](https://github.com/reason-react-native/.github/blob/master/CODE_OF_CONDUCT.md) so that you can understand what
+[our full code of conduct](https://github.com/rescript-react-native/.github/blob/master/CODE_OF_CONDUCT.md) so that you can understand what
 actions will and will not be tolerated.
