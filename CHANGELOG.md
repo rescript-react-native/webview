@@ -1,5 +1,9 @@
 # Changelog of `@rescript-react-native/webview`
 
+## 10.8.1 - 2021-05-03
+
+ReScript
+
 ## 10.8.0 - 2020-11-20
 
 - 10.8.0 compat

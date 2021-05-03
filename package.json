@@ -1,7 +1,7 @@
 {
   "name": "@rescript-react-native/webview",
   "description": "ReScript bindings for react-native-webview.",
-  "version": "10.8.0",
+  "version": "10.8.1",
   "publishConfig": {
     "access": "public"
   },
