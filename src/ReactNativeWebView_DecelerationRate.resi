@@ -2,8 +2,8 @@ type t
 
 external value: float => t = "%identity"
 
-@bs.inline("normal")
+@inline("normal")
 let normal: t
 
-@bs.inline("fast")
+@inline("fast")
 let fast: t

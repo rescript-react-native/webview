@@ -1,28 +1,28 @@
 type t
 
-@bs.inline("phoneNumber")
+@inline("phoneNumber")
 let phoneNumber: t
 
-@bs.inline("link")
+@inline("link")
 let link: t
 
-@bs.inline("address")
+@inline("address")
 let address: t
 
-@bs.inline("calendarEvent")
+@inline("calendarEvent")
 let calendarEvent: t
 
-@bs.inline("none")
+@inline("none")
 let none: t
 
-@bs.inline("all")
+@inline("all")
 let all: t
 
-@bs.inline("trackingNumber")
+@inline("trackingNumber")
 let trackingNumber: t
 
-@bs.inline("flightNumber")
+@inline("flightNumber")
 let flightNumber: t
 
-@bs.inline("lookupSuggestion")
+@inline("lookupSuggestion")
 let lookupSuggestion: t

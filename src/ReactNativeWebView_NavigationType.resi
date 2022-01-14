@@ -1,19 +1,19 @@
 type t
 
-@bs.inline("click")
+@inline("click")
 let click: t
 
-@bs.inline("formsubmit")
+@inline("formsubmit")
 let formsubmit: t
 
-@bs.inline("backforward")
+@inline("backforward")
 let backforward: t
 
-@bs.inline("reload")
+@inline("reload")
 let reload: t
 
-@bs.inline("formresubmit")
+@inline("formresubmit")
 let formresubmit: t
 
-@bs.inline("other")
+@inline("other")
 let other: t
