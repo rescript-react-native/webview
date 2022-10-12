@@ -18,7 +18,7 @@ module Source = {
       | #PUT
       | #TRACE
     ]=?,
-    ~headers: Js.t<'a>=?,
+    ~headers: {..}=?,
     ~body: string=?,
     unit,
   ) => t = ""
@@ -78,31 +78,31 @@ module WebViewDownloadEvent = {
 }
 
 module WebViewErrorEvent = {
-  type payload = Js.t<webViewError>
+  type payload = webViewError
   include Event.SyntheticEvent({
     type _payload = payload
   })
 }
 module WebViewHttpErrorEvent = {
-  type payload = Js.t<webViewHttpError>
+  type payload = webViewHttpError
   include Event.SyntheticEvent({
     type _payload = payload
   })
 }
 module WebViewMessageEvent = {
-  type payload = Js.t<webViewMessage>
+  type payload = webViewMessage
   include Event.SyntheticEvent({
     type _payload = payload
   })
 }
 module WebViewNavigationEvent = {
-  type payload = Js.t<webViewNavigation>
+  type payload = webViewNavigation
   include Event.SyntheticEvent({
     type _payload = payload
   })
 }
 module WebViewProgressEvent = {
-  type payload = Js.t<webViewNativeProgressEvent>
+  type payload = webViewNativeProgressEvent
   include Event.SyntheticEvent({
     type _payload = payload
   })
@@ -114,14 +114,14 @@ module WebViewRenderProcessGone = {
   })
 }
 module WebViewTerminatedEvent = {
-  type payload = Js.t<webViewNativeEvent>
+  type payload = webViewNativeEvent
   include Event.SyntheticEvent({
     type _payload = payload
   })
 }
 
 module UnionCallback = ReactNativeWebView_UnionCallback.Make({
-  type union = Js.t<webViewNavigationOrError>
+  type union = webViewNavigationOrError
   type navigationEvent = WebViewNavigationEvent.t
   type errorEvent = WebViewErrorEvent.t
 })
@@ -131,8 +131,8 @@ type nativeConfig
 @obj
 external nativeConfig: (
   ~component: React.component<'a>=?,
-  ~props: Js.t<'b>=?,
-  ~viewManager: Js.t<'c>=?,
+  ~props: {..}=?,
+  ~viewManager: 'viewManager=?,
 ) => nativeConfig = ""
 
 @react.component @module("react-native-webview")
@@ -194,9 +194,9 @@ external make: (
   ~onLoadProgress: WebViewProgressEvent.t => unit=?,
   ~onLoadStart: WebViewNavigationEvent.t => unit=?,
   ~onMessage: WebViewMessageEvent.t => unit=?,
-  ~onNavigationStateChange: Js.t<webViewNavigation> => unit=?,
+  ~onNavigationStateChange: webViewNavigation => unit=?,
   ~onRenderProcessGone: WebViewRenderProcessGone.t => unit=?,
-  ~onShouldStartLoadWithRequest: Js.t<webViewShouldStartLoadWithRequest> => bool=?,
+  ~onShouldStartLoadWithRequest: webViewShouldStartLoadWithRequest => bool=?,
   ~originWhitelist: array<string>=?,
   ~overScrollMode: [#never | #always | #content]=?,
   ~pagingEnabled: bool=?,
