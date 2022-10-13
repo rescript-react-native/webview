@@ -1,6 +1,6 @@
 'use strict';
 
-var Curry = require("bs-platform/lib/js/curry.js");
+var Curry = require("rescript/lib/js/curry.js");
 var Event$ReactNative = require("rescript-react-native/src/apis/Event.bs.js");
 var NativeElement$ReactNative = require("rescript-react-native/src/elements/NativeElement.bs.js");
 
